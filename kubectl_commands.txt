@@ -11,3 +11,14 @@ Kubectl basic commands
 5. kubectl get deployment
 	Between deployment and pod, there is another layer which is called replica.
 6. kubectl get replicaset (A replicaset is managing the replica of a pod).
+	We don't have to create, delete or update a replicaset. It's taken care of by Kubernetes.
+	We just manage the deployment. And everything below the deployment is managed by kubernetes.
+	A deployment manages.
+7. kubectl edit deployment NAME_OF_DEPLOYMENT
+
+kubectl debug:
+	8. kubectl logs POD_NAME ( gives the logs of what is going on inside the pod).
+	9. kubectl describe pod POD_NAME
+	10.kubectl exec -it POD_NAME --bin/bash (This command gives the terminal of the POD_NAME container.)
+		if --bin/bash doesn't work, try --bin/sh. One of them will work.
+11. kubectl delete deployment DEPLOYMENT_NAME.
