@@ -22,3 +22,9 @@ kubectl debug:
 	10.kubectl exec -it POD_NAME --bin/bash (This command gives the terminal of the POD_NAME container.)
 		if --bin/bash doesn't work, try --bin/sh. One of them will work.
 11. kubectl delete deployment DEPLOYMENT_NAME.
+
+To apply a configuration to the pod(the container underneath), we use a configuration file.
+12. kubectl apply -f FILE_NAME
+	example: 
+	kubectl apply -f config_file.yaml
+	This kubectl apply command can be used to create, update components.
