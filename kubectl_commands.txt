@@ -1,0 +1,13 @@
+Kubectl basic commands
+========================
+1. kubectl get nodes
+2. kubectl get pod
+3. kubectl get services
+4. kubectl create -h (this is a help command for create)
+	For creating a deployment:
+	kubectl create deployment NAME --image=image_name [--dry-run] [options]
+	example:
+	kubectl create deployment nginx-depl --image=nginx
+5. kubectl get deployment
+	Between deployment and pod, there is another layer which is called replica.
+6. kubectl get replicaset (A replicaset is managing the replica of a pod).
