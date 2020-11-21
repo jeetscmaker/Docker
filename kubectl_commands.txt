@@ -28,3 +28,8 @@ To apply a configuration to the pod(the container underneath), we use a configur
 	example: 
 	kubectl apply -f config_file.yaml
 	This kubectl apply command can be used to create, update components.
+13. kubectl get pod -o wide (gives output in more wider form for pods)
+
+14. kubectl get deployment nginx-depl -o yaml > nginx-depl-result.yaml
+	This command says, get the output of 'nginx-depl' in yaml format and
+	copy the output in nginx-depl-result.yaml file.
