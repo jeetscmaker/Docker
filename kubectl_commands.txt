@@ -33,3 +33,9 @@ To apply a configuration to the pod(the container underneath), we use a configur
 14. kubectl get deployment nginx-depl -o yaml > nginx-depl-result.yaml
 	This command says, get the output of 'nginx-depl' in yaml format and
 	copy the output in nginx-depl-result.yaml file.
+
+Now to delete a deployment by a file name use below command:
+15. kubectl delete deployment -f nginx-depl.yaml
+
+And to delete a service using a file name use below command:
+16. kubectl delete service -f db-service.yaml
