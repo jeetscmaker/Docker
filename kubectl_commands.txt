@@ -43,3 +43,13 @@ And to delete a service using a file name use below command:
 Base64 Encoding:
 17. echo -n 'myNameIsJohnDcosta' | base64
 	and the output will be a base64 encoding string value.
+18. kubectl get secret
+	it gives the list of created secrets. And these secrets can be 
+	referenced inside deployment configuration file.
+Q. So how to create a secret?
+Ans. Just create a yaml file with secret informations and metadata and use 'apply'.
+	kubectl apply -f my_secret_file.yaml
+	The 'kind' in the secret yaml file is 'secret', it should be like this
+		kind: secret
+
+
