@@ -39,3 +39,7 @@ Now to delete a deployment by a file name use below command:
 
 And to delete a service using a file name use below command:
 16. kubectl delete service -f db-service.yaml
+
+Base64 Encoding:
+17. echo -n 'myNameIsJohnDcosta' | base64
+	and the output will be a base64 encoding string value.
