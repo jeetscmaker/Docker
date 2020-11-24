@@ -52,4 +52,8 @@ Ans. Just create a yaml file with secret informations and metadata and use 'appl
 	The 'kind' in the secret yaml file is 'secret', it should be like this
 		kind: secret
 
+Q. Suppose there are more then 2 containers in a pod. How to open a particular container in terminal?
+Ans: command no. 19
+19.	kubectl exec -it POD_NAME -c CONTAINER_NAME -- /bin/bash
+
 
