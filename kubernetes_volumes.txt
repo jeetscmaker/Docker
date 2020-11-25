@@ -1,0 +1,28 @@
+Kubernetes Namespaces
+==========================
+In Kubernetes cluster, we can organise resources in namespaces. A cluster contains a number of namespaces.
+- A namespace is a virtual cluster iside a kubernetes cluster.
+- 4 namespaces by default in a kubernetes cluster.
+- command to get kubernetes namespaces:
+	kubectl get namespace
+
+Kubernetes Volumes:
+---------------------
+How to persist data i Kubernetes using volumes?
+1. Persistent volume, 2. Persistent volume claim, 3. Storage claim.
+
+In kubernetes, when we restart the pod, the data is gone because kubernetes doesn't provide persistence out of the box.
+Storage needs to survive even if the whole cluster crashes.
+For that reason data storage is kept outside of kubernetes cluster, and configured for access inside the cluster.
+
+'Persistent volume' is a kubernetes component just like RAM or CPU in a computer.
+	It is created using a YAML file, with kind: PersistentVolume.
+	It needs an actual physical storage such as NFS server, AWS s3, Google drive etc.
+Configure a Pod to Use a PersistentVolume for Storage
+1.	You, as cluster administrator, create a PersistentVolume backed by physical storage. 
+	You do not associate the volume with any Pod.
+2.  You, now taking the role of a developer / cluster user, create a PersistentVolumeClaim 
+	that is automatically bound to a suitable PersistentVolume.
+3.  You create a Pod that uses the above PersistentVolumeClaim for storage.
+	
+	
