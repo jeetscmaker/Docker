@@ -56,4 +56,8 @@ Q. Suppose there are more then 2 containers in a pod. How to open a particular c
 Ans: command no. 19
 19.	kubectl exec -it POD_NAME -c CONTAINER_NAME -- /bin/bash
 
+20. echo $(minikube docker -env)
+
+How containers interact inside a pod?
+
 
