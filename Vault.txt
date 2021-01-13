@@ -18,3 +18,11 @@ Modern applications and cloud environments tend to add some extra complexity: di
 have sensitive information spread a bit everywhere, thus increasing the risk of a security breach.
 
 So, what can we do? Let's Vault it!
+
+What Is Vault?
+==============
+Hashicorp Vault addresses the problem of managing sensitive information – a secret in Vault's parlance. “Managing” in this context means that Vault controls 
+all aspects of a sensitive piece of information: its generation, storage, usage and, last but not least, its revocation.
+
+Hashicorp offers two versions of Vault. The open-source version, used in this article, is free to use, even in commercial environments. A paid version is 
+also available, which includes technical support at different SLAs and additional features, such as HSM (Hardware Security Module) support.
