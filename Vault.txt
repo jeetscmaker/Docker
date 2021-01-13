@@ -1,0 +1,20 @@
+The Problem with Sensitive Information
+========================================
+Before digging into Vault, let's try to understand the problem it tries to solve: sensitive information management.
+
+Most applications need access to sensitive data in order to work properly. For instance, an e-commerce application may have a username/password configured 
+somewhere in order to connect to its database. It may also need API keys to integrate with other service providers, such as payment gateways, logistics, 
+and other business partners.
+
+Database credentials and API Keys are some examples of sensitive information that we need to store and make available to our applications in a secure way.
+
+A simple solution is to store those credentials in a configuration file and read them at startup time. The problem with this approach is obvious, though. 
+Whoever has access to this file share the same database privileges our application have – usually giving her full access to all stored data.
+
+We can try to make things a bit harder by encrypting those files. This approach, however, will not add much in terms of overall security. Mainly, because 
+our application must have access to the master key. Encryption, when used in this way, will only achieve a “false” sense of security.
+
+Modern applications and cloud environments tend to add some extra complexity: distributed services, multiple databases, messaging systems and so on, all 
+have sensitive information spread a bit everywhere, thus increasing the risk of a security breach.
+
+So, what can we do? Let's Vault it!
