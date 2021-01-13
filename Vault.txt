@@ -26,3 +26,24 @@ all aspects of a sensitive piece of information: its generation, storage, usage 
 
 Hashicorp offers two versions of Vault. The open-source version, used in this article, is free to use, even in commercial environments. A paid version is 
 also available, which includes technical support at different SLAs and additional features, such as HSM (Hardware Security Module) support.
+
+Architecture & Key Features
+=================================
+Vault's architecture is deceivingly simple. Its main components are:
+
+A persistence backend – storage for all secrets
+An API server which handles client requests and performs operations on secrets
+A number of secret engines, one for each type of supported secret type
+By delegating all secret handling to Vault, we can mitigate some security issues:
+
+Our applications don't have to store them anymore – just ask Vault when needed and discard it
+We can use short-lived secrets, thus limiting the “window of opportunity” where an attacker can use a stolen secret
+Vault encrypts all data with an encryption key before writing it to the store. This encryption key is encrypted by yet another key – the master key, used only at startup.
+
+A key point in Vault's implementation is that it doesn't store the master key in the server. This means that not even Vault can access its saved data after startup. 
+At this point, a Vault instance is said to be in a “sealed” state.
+
+Later on, we'll go through the steps needed to generate the master key and unseal a Vault instance.
+
+Once unsealed, Vault will be ready to accept API requests. Those requests, of course, need authentication, which brings us to how Vault authenticates 
+clients and decides what they can or can't do.
