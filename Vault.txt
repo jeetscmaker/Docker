@@ -47,3 +47,26 @@ Later on, we'll go through the steps needed to generate the master key and unsea
 
 Once unsealed, Vault will be ready to accept API requests. Those requests, of course, need authentication, which brings us to how Vault authenticates 
 clients and decides what they can or can't do.
+
+Authentication
+=================
+To access secrets in Vault a client needs to authenticate itself using one of the supported methods. The simplest method uses Tokens, which are just strings 
+sent on every API request using a special HTTP header.
+
+When initially installed, Vault automatically generates a “root token”. This token is the equivalent as root superuser in Linux systems, so its use should 
+be limited to a minimum. As a best practice, we should use this root token just to create other tokens with fewer privileges and then revoke it. This isn't 
+a problem, though, since we can later generate another root token using unseal keys.
+
+Vault also support other authentication mechanisms such as LDAP, JWT, TLS Certificates, among others. All those mechanisms build on top of the basic token 
+mechanism: once Vault validates our client, it will provide a token that we can then use to access other APIs.
+
+Tokens have a few properties associated with them. The main properties are:
+
+A set of associated Policies (see next section)
+Time-to-live
+Whether it can be renewed
+Maximum usage count
+Unless told otherwise, tokens created by Vault will form a parent-child relationship. A child token can have at most the same level of privileges it parent has.
+
+The opposite isn't true: we can – and usually do – create a child token with restrictive policies Another key point about this relationship: When we 
+invalidate a token, all child tokens, and their descendants are also invalidated.
