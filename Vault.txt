@@ -110,3 +110,21 @@ A given secret instance is accessible via a path, much like a directory tree in 
 mount point where all secrets of this type are located.
 
 For instance, the string secret/my-application corresponds to the path under which we can find key-value pairs for my-application.
+
+Key-Value Secrets
+=====================
+Key-Value secrets are, as the name implies, simple pairs in the available under a given path. For instance, we can store the pair foo=bar 
+under the path /secret/my-application. 
+
+Later on, we use the same path to retrieve the same pair or pairs – multiple pairs can be stored under the same path.
+
+Vault support three kinds of Key-Value secrets:
+
+Non-versioned Key-Pairs, where updates replace existing values
+Versioned Key-Pairs, which keep up to a configurable number of old versions
+Cubbyhole, a special type of non-versioned key-pairs whose values are scoped to a given access token (more on those later).
+Key-Value secrets are static by nature, so there is no concept of an associated expiration associated with them. The main 
+use case for this kind of secret is to store credentials to access external systems, such as API keys.
+
+In such scenarios credential updates are a semi-manual process, usually requiring someone to acquire new credentials and 
+using Vault's command line or its UI to enter the new values.
