@@ -70,3 +70,27 @@ Unless told otherwise, tokens created by Vault will form a parent-child relation
 
 The opposite isn't true: we can – and usually do – create a child token with restrictive policies Another key point about this relationship: When we 
 invalidate a token, all child tokens, and their descendants are also invalidated.
+
+Policies
+===============
+Policies define exactly which secrets a client can access and which operations it can perform with them. Let's see how a simple policy looks like:
+
+path "secret/accounting" {
+    capabilities = [ "read" ]
+}
+Here we have used the HCL (Hashicorp's Configuration Language) syntax to define our policy. Vault also supports JSON for this purpose, 
+but we'll stick to HCL in our examples since it is easier to read.
+
+Policies in Vault are “deny by default”. A token attached to this sample policy will get access to secrets stored under secret/accounting 
+and nothing else. At creation time a token can be attached to multiple policies. This is very useful because it allows us to create and 
+test smaller policies and then apply them as required.
+
+Another important aspect of policies is that they leverage lazy-evaluation. This means that we can update a given policy and all tokens 
+will be affected immediately.
+
+The policies described so far are also called Access Control List Policies, or ACL Policies. Vault also supports two additional policy types: 
+EGP and RGP policies. Those are only available in the paid versions and extend the basic policy syntax with Sentinel support.
+
+When available, this allows us to take into account in our policies additional attributes such as time of the day, multiple authentication 
+factors, client network origin, and so on. For instance, we can define a policy that allows access to a given secret only on business hours.
+
