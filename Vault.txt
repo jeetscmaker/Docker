@@ -153,3 +153,18 @@ The client can then use those credentials to access the database during the peri
 
 Once a credential reaches its expiration time, Vault will automatically revoke any privilege associated with this user. A client can also request Vault 
 to renew those credentials. The renewal process will happen only if supported by the specific database driver and allowed by the associated policy.
+
+Cryptographic Keys
+==========================
+Secret engines of type handle cryptographic functions such as encryption, decryption, signing and so on. All those operations use cryptographic 
+keys generated and stored internally by Vault. Unless explicitly told to do so, Vault will never expose a given cryptographic key.
+
+The associated API allows clients to send Vault plain-text data and receive an encrypted version of it. The opposite is also possible: We can send 
+encrypted data and get back the original text.
+
+Currently, there is only one engine of this type: the Transit engine. This engine supports popular keys types, such as RSA and ECDSA, and also 
+supports Convergent Encryption. When using this mode, a given plaintext value always result in the same cyphertext result, a property that is 
+very useful in some applications.
+
+For instance, we can use this mode to encrypt credit card numbers in a transaction log table. With convergent encryption, every time we insert 
+a new transaction, the encrypted credit card value would be the same, thus allowing the use of regular SQL queries for reporting, searching and so on.
