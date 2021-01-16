@@ -128,3 +128,28 @@ use case for this kind of secret is to store credentials to access external syst
 
 In such scenarios credential updates are a semi-manual process, usually requiring someone to acquire new credentials and 
 using Vault's command line or its UI to enter the new values.
+
+Dynamically Generated Secrets
+================================
+Dynamic secrets are generated on the fly by Vault when requested by an application. Vault support several types of dynamic secrets, including the following ones:
+
+Database credentials
+SSH Key Pairs
+X.509 Certificates
+AWS Credentials
+Google Cloud service accounts
+Active Directory accounts
+All these follow the same usage pattern. First, we configure the secret engine with the details required to connect to the associated service. 
+Then, we define one or more roles, which describe the actual secret creation.
+
+Let's take the Database secret engine as an example. First, we must configure Vault with all user database connections details, including credentials 
+from a preexisting user with admin privileges to create new users.
+
+Then we create one or more roles (Vault roles, not Database roles) containing the actual SQL statements used to create a new user. Those usually 
+include not only the user creation statement but also all the required grant statements required to access schema objects (tables, views and so on).
+
+When a client accesses the corresponding API, Vault will create a new temporary user in the database using the provided statements and return its credentials. 
+The client can then use those credentials to access the database during the period defined by the time-to-live attribute of the requested role.
+
+Once a credential reaches its expiration time, Vault will automatically revoke any privilege associated with this user. A client can also request Vault 
+to renew those credentials. The renewal process will happen only if supported by the specific database driver and allowed by the associated policy.
