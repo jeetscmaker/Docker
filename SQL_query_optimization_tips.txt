@@ -1,0 +1,17 @@
+Few tips to optimise SQL queries:
+
+1. Define business requirements first
+
+2. SELECT fields instead of using SELECT *
+
+3. Avoid SELECT DISTINCT
+
+4. Create joins with INNER JOIN (not WHERE)
+
+5. Use WHERE instead of HAVING to define filters
+
+6. Use wildcards at the end of a phrase only
+
+7. Use LIMIT to sample query results
+
+8. Run your query during off-peak hours
